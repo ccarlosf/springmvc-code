@@ -3,10 +3,7 @@ package com.ccarlos.edu.controller;
 import com.ccarlos.edu.pojo.QueryVo;
 import com.ccarlos.edu.pojo.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -125,6 +122,62 @@ public class DemoController {
     @RequestMapping("/handle06")
     public ModelAndView handle06(Date birthday) {
         Date date = new Date();ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("date",date);
+        modelAndView.setViewName("success");
+        return modelAndView;
+    }
+
+
+    /*
+     * restful  get   /demo/handle/15
+     */
+    @RequestMapping(value = "/handle/{id}",method = {RequestMethod.GET})
+    public ModelAndView handleGet(@PathVariable("id") Integer id) {
+
+        Date date = new Date();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("date",date);
+        modelAndView.setViewName("success");
+        return modelAndView;
+    }
+
+
+    /*
+     * restful  post  /demo/handle
+     */
+    @RequestMapping(value = "/handle",method = {RequestMethod.POST})
+    public ModelAndView handlePost(String username) {
+
+        Date date = new Date();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("date",date);
+        modelAndView.setViewName("success");
+        return modelAndView;
+    }
+
+
+    /*
+     * restful  put  /demo/handle/15/lisi
+     */
+    @RequestMapping(value = "/handle/{id}/{name}",method = {RequestMethod.PUT})
+    public ModelAndView handlePut(@PathVariable("id") Integer id,@PathVariable("name") String username) {
+
+        Date date = new Date();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("date",date);
+        modelAndView.setViewName("success");
+        return modelAndView;
+    }
+
+
+    /*
+     * restful  delete  /demo/handle/15
+     */
+    @RequestMapping(value = "/handle/{id}",method = {RequestMethod.DELETE})
+    public ModelAndView handleDelete(@PathVariable("id") Integer id) {
+
+        Date date = new Date();
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("date",date);
         modelAndView.setViewName("success");
         return modelAndView;
