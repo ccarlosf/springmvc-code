@@ -182,4 +182,14 @@ public class DemoController {
         modelAndView.setViewName("success");
         return modelAndView;
     }
+
+    @RequestMapping("/handle07")
+    // 添加@ResponseBody之后，不再走视图解析器那个流程，而是等同于response直接输出数据
+
+    public @ResponseBody User handle07(@RequestBody User user) {
+
+        // 业务逻辑处理，修改name为张三丰
+        user.setName("张三丰");
+        return user;
+    }
 }
