@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -233,4 +234,41 @@ public class DemoController {
         modelAndView.setViewName("success");
         return modelAndView;
     }
+
+
+    /**
+     * SpringMVC 重定向时参数传递的问题
+     * 转发：A 找 B 借钱400，B没有钱但是悄悄的找到C借了400块钱给A
+     *      url不会变,参数也不会丢失,一个请求
+     * 重定向：A 找 B 借钱400，B 说我没有钱，你找别人借去，那么A 又带着400块的借钱需求找到C
+     *      url会变,参数会丢失需要重新携带参数,两个请求
+     */
+
+    @RequestMapping("/handleRedirect")
+    public String handleRedirect(String name, RedirectAttributes redirectAttributes) {
+
+        //return "redirect:handle01?name=" + name;  // 拼接参数安全性、参数长度都有局限
+        // addFlashAttribute方法设置了一个flash类型属性，该属性会被暂存到session中，在跳转到页面之后该属性销毁
+        redirectAttributes.addFlashAttribute("name",name);
+        return "redirect:handle01";
+
+    }
+
+
+ /*   @RequestMapping("/handle01")
+    public ModelAndView handle01(@RequestParam("name") String name) {
+
+        int c = 1/0;
+
+
+        Date date = new Date();// 服务器时间
+        // 返回服务器时间到前端页面
+        // 封装了数据和页面信息的 ModelAndView
+        ModelAndView modelAndView = new ModelAndView();
+        // addObject 其实是向请求域中request.setAttribute("date",date);
+        modelAndView.addObject("date", date);
+        // 视图信息(封装跳转的页面信息) 逻辑视图名
+        modelAndView.setViewName("success");
+        return modelAndView;
+    }*/
 }
