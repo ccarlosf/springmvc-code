@@ -61,5 +61,28 @@
     <mvc:resources location="classpath:/"  mapping="/resources/**"/>
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
 
+    <mvc:interceptors>
+        <!--拦截所有handler-->
+<!--
+        <bean class="com.ccarlos.edu.interceptor.MyIntercepter01"/>
+-->
+
+        <mvc:interceptor>
+            <!--配置当前拦截器的url拦截规则，**代表当前目录下及其子目录下的所有url-->
+            <mvc:mapping path="/**"/>
+            <!--exclude-mapping可以在mapping的基础上排除一些url拦截-->
+            <!--<mvc:exclude-mapping path="/demo/**"/>-->
+            <bean class="com.ccarlos.edu.interceptor.MyIntercepter01"/>
+        </mvc:interceptor>
+
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.ccarlos.edu.interceptor.MyIntercepter02"/>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+
+
 
 </beans>
