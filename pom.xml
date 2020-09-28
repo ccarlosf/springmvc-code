@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>springmvc-demo</module>
+        <module>mvc</module>
     </modules>
     <name>springmvc-code</name>
     <description>springmvc-code project for Spring Boot</description>
