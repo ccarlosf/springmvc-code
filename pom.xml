@@ -9,6 +9,7 @@
     <modules>
         <module>springmvc-demo</module>
         <module>mvc</module>
+        <module>ssm</module>
     </modules>
     <name>springmvc-code</name>
     <description>springmvc-code project for Spring Boot</description>
